@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
     private PlayerInputAction playerActions;
 
     public Vector2 movement { get; private set; }
-    private InputAction leftStick;
+    private InputAction movementInput;
 
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class InputManager : MonoBehaviour
 
     private void OnEnable()
     {
-        leftStick = playerActions.ActionMap.Movement;
+        movementInput = playerActions.ActionMap.Movement;
         playerActions.Enable();
     }
 
@@ -45,6 +45,6 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement = leftStick.ReadValue<Vector2>();
+        movement = movementInput.ReadValue<Vector2>();
     }
 }
