@@ -8,9 +8,12 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
 
     private PlayerInputAction playerActions;
+    private InputAction movementInput;
 
     public Vector2 movement { get; private set; }
-    private InputAction movementInput;
+
+    public delegate void ActionButton();
+    public event ActionButton ButtonShootDown;
 
     private void Awake()
     {
@@ -25,31 +28,34 @@ public class InputManager : MonoBehaviour
         playerActions = new PlayerInputAction();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     private void OnEnable()
     {
         movementInput = playerActions.ActionMap.Movement;
+
+        playerActions.ActionMap.Attack1.started += OnButtonShoot;
+        playerActions.ActionMap.Attack1.canceled += OnButtonShoot;
+
         playerActions.Enable();
     }
 
     private void OnDisable()
     {
-        playerActions.Disable();
-    }
 
-    private void InputMoveRead(Vector2 direction)
-    {
-        movement = direction;
+        playerActions.ActionMap.Attack1.started -= OnButtonShoot;
+        playerActions.ActionMap.Attack1.canceled -= OnButtonShoot;
+
+        playerActions.Disable();
     }
 
     // Update is called once per frame
     void Update()
     {
         movement = movementInput.ReadValue<Vector2>();
+    }
+
+    private void OnButtonShoot(InputAction.CallbackContext value)
+    {
+        if (value.started)
+            ButtonShootDown?.Invoke();
     }
 }

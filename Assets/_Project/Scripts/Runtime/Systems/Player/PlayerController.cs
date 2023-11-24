@@ -3,15 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Shooter))]
 public class PlayerController : MonoBehaviour
 {
-
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotateSpeed;
     [SerializeField] private Transform shotSpawnPoint;
     [SerializeField] private GameObject bulletPrefab;
 
     private Rigidbody2D rb;
+    private Shooter shooter;
     [SerializeField] private Vector2 movementInput;
 
     [SerializeField] private float acceleration;
@@ -21,6 +22,18 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        shooter = GetComponent<Shooter>();
+    }
+
+    private void Start()
+    {
+        InputManager.Instance.ButtonShootDown += OneShoot;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.ButtonShootDown -= OneShoot;
+
     }
 
     // Update is called once per frame
@@ -56,4 +69,11 @@ public class PlayerController : MonoBehaviour
 
         currentSpeed = Mathf.Clamp(currentSpeed, 0, moveSpeed);
     }
+
+    private void OneShoot()
+    {
+        Debug.Log("shooting");
+        shooter.Shoot(1, 0, bulletPrefab, shotSpawnPoint);
+    }
+
 }
