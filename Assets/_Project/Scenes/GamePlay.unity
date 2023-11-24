@@ -249,9 +249,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  rotateSpeed: 1
+  rotateSpeed: 1.5
   shotSpawnPoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
+  movementInput: {x: 0, y: 0}
+  acceleration: 3
+  deacceleration: 3
+  currentSpeed: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,7 +39,12 @@ public class InputManager : MonoBehaviour
 
     private void OnDisable()
     {
+        playerActions.Disable();
+    }
 
+    private void InputMoveRead(Vector2 direction)
+    {
+        movement = direction;
     }
 
     // Update is called once per frame
