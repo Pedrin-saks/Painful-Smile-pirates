@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotateSpeed;
     [SerializeField] private Transform shotSpawnPoint;
+    [SerializeField] private Transform tripleShotSpawnPoint;
     [SerializeField] private GameObject bulletPrefab;
 
     private Rigidbody2D rb;
@@ -23,19 +24,19 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         shooter = GetComponent<Shooter>();
-
-        GameManager.Instance.PlayerRegister(transform);
     }
 
     private void Start()
     {
-        InputManager.Instance.ButtonShootDown += OneShoot;
+        GameManager.Instance.PlayerRegister(transform);
+        InputManager.Instance.ButtonShootDown += OneShot;
+        InputManager.Instance.ButtonTripleShootDown += TripleShot;
     }
 
     private void OnDisable()
     {
-        InputManager.Instance.ButtonShootDown -= OneShoot;
-
+        InputManager.Instance.ButtonShootDown -= OneShot;
+        InputManager.Instance.ButtonTripleShootDown -= TripleShot;
     }
 
     // Update is called once per frame
@@ -72,10 +73,14 @@ public class PlayerController : MonoBehaviour
         currentSpeed = Mathf.Clamp(currentSpeed, 0, moveSpeed);
     }
 
-    private void OneShoot()
+    private void OneShot()
     {
-        Debug.Log("shooting");
-        shooter.Shoot(3, 45, bulletPrefab, shotSpawnPoint);
+        shooter.Shoot(1, 0, bulletPrefab, shotSpawnPoint);
+    }
+
+    private void TripleShot()
+    {
+        shooter.Shoot(3, 45, bulletPrefab, tripleShotSpawnPoint);
     }
 
 }

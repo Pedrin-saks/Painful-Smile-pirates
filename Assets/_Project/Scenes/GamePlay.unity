@@ -338,7 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 127198848}
   m_Layer: 0
-  m_Name: SpawnPointOneBullet
+  m_Name: OneShotSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -524,6 +524,7 @@ MonoBehaviour:
   moveSpeed: 2
   rotateSpeed: 1.5
   shotSpawnPoint: {fileID: 127198848}
+  tripleShotSpawnPoint: {fileID: 1427869144}
   bulletPrefab: {fileID: 5802471615733825313, guid: 631b5ec37d410054298d70efb915a7fe, type: 3}
   movementInput: {x: 0, y: 0}
   acceleration: 3
@@ -1363,7 +1364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1427869144}
   m_Layer: 0
-  m_Name: SpawnPointTripleBullet
+  m_Name: TripleShotSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

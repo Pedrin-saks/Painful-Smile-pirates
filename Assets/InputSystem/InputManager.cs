@@ -14,6 +14,7 @@ public class InputManager : MonoBehaviour
 
     public delegate void ActionButton();
     public event ActionButton ButtonShootDown;
+    public event ActionButton ButtonTripleShootDown;
 
     private void Awake()
     {
@@ -32,8 +33,8 @@ public class InputManager : MonoBehaviour
     {
         movementInput = playerActions.ActionMap.Movement;
 
-        playerActions.ActionMap.Attack1.started += OnButtonShoot;
-        playerActions.ActionMap.Attack1.canceled += OnButtonShoot;
+        playerActions.ActionMap.Attack1.started += OnButtonShot;
+        playerActions.ActionMap.Attack2.started += OnButtonTripleShot;
 
         playerActions.Enable();
     }
@@ -41,8 +42,8 @@ public class InputManager : MonoBehaviour
     private void OnDisable()
     {
 
-        playerActions.ActionMap.Attack1.started -= OnButtonShoot;
-        playerActions.ActionMap.Attack1.canceled -= OnButtonShoot;
+        playerActions.ActionMap.Attack1.started -= OnButtonShot;
+        playerActions.ActionMap.Attack2.started -= OnButtonTripleShot;
 
         playerActions.Disable();
     }
@@ -53,9 +54,15 @@ public class InputManager : MonoBehaviour
         movement = movementInput.ReadValue<Vector2>();
     }
 
-    private void OnButtonShoot(InputAction.CallbackContext value)
+    private void OnButtonShot(InputAction.CallbackContext value)
     {
         if (value.started)
             ButtonShootDown?.Invoke();
+    }
+
+    private void OnButtonTripleShot(InputAction.CallbackContext value)
+    {
+        if (value.started)
+            ButtonTripleShootDown?.Invoke();
     }
 }
