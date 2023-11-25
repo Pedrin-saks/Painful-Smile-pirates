@@ -18,6 +18,15 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+  healthSettings:
+  - healthSprite: {fileID: 21300000, guid: 7daf19ef46535d04cb2c3a8705fa3efe, type: 3}
+    lifePercentage: 100
+  - healthSprite: {fileID: 21300000, guid: 6e8d7ad84fbd9ea47b90427ba018a8bd, type: 3}
+    lifePercentage: 66
+  - healthSprite: {fileID: 21300000, guid: 1c5e1808ae595464db805aafad74ba6d, type: 3}
+    lifePercentage: 33
+  - healthSprite: {fileID: 21300000, guid: 53811e545c1e0d940a9e3a701b7afbc1, type: 3}
+    lifePercentage: 0
   numberOfShots: 1
   spreadAngle: 0
   delayBetweenShot: 2

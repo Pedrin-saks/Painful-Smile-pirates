@@ -25,6 +25,6 @@ public class EnemyData : ScriptableObject
 [System.Serializable]
 public class HealthSettings
 {
-    public Sprite healthState;
+    public Sprite healthSprite;
     public float lifePercentage;
 }
