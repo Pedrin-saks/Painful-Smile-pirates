@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
+
+
     public void Shoot(int numberOfShots, float spreadAngle, GameObject bulletPrefab, Transform shotSpawnPoint)
     {
         float startAngle = -spreadAngle / 2f;
@@ -14,8 +16,7 @@ public class Shooter : MonoBehaviour
             float angle = startAngle + i * angleIncrement;
             Vector3 eulerAngles = new Vector3(0, 0, angle);
             Quaternion bulletRotation = Quaternion.Euler(eulerAngles);
-            bulletRotation.Normalize();
-            Instantiate(bulletPrefab, shotSpawnPoint.position, bulletRotation);
+            Instantiate(bulletPrefab, shotSpawnPoint.position, shotSpawnPoint.rotation * bulletRotation);
         }
     }
 

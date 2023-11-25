@@ -4,6 +4,24 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
+    public static GameManager Instance;
+
+    [HideInInspector]
+    public Transform PlayerPosition;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +32,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PlayerRegister(Transform player)
+    {
+        this.PlayerPosition = player;
     }
 }

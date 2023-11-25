@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Shooter))]
+[RequireComponent(typeof(Shooter), typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         shooter = GetComponent<Shooter>();
+
+        GameManager.Instance.PlayerRegister(transform);
     }
 
     private void Start()
@@ -73,7 +75,7 @@ public class PlayerController : MonoBehaviour
     private void OneShoot()
     {
         Debug.Log("shooting");
-        shooter.Shoot(1, 0, bulletPrefab, shotSpawnPoint);
+        shooter.Shoot(3, 45, bulletPrefab, shotSpawnPoint);
     }
 
 }
