@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +9,7 @@ public class EnemyData : ScriptableObject
     [Range(0.2F, 15)]
     public float radius;
     public LayerMask layerMask;
+    public List<HealthSettings> healthSettings;
 
     [Space(20)]
     [Range(0,3)]
@@ -19,4 +19,12 @@ public class EnemyData : ScriptableObject
     [Range(0.1F, 5)]
     public float delayBetweenShot;
     public GameObject bulletPrefab;
+}
+
+
+[System.Serializable]
+public class HealthSettings
+{
+    public Sprite healthState;
+    public float lifePercentage;
 }
