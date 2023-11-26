@@ -54,6 +54,8 @@ public class HealthSystem : MonoBehaviour, IDamageable
         {
             Die();
         }
+
+        OnChangeHealth?.Invoke(currentHealth, maxHealth);
     }
 
     public void Die()

@@ -5,7 +5,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-
+    public GameObject prefabHpBar;
+    public Transform parentContentHpBar;
     public static GameManager Instance;
 
     [HideInInspector]
