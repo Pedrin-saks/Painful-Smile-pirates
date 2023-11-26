@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - PlayerBoat
+  - Obstacle
+  - EnemyBoat
   layers:
   - Default
   - TransparentFX
@@ -11,9 +15,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Wall
   - 
   - 
   - 
@@ -40,4 +44,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ocean
+    uniqueID: 2020579581
+    locked: 0
+  - name: Island
+    uniqueID: 670113199
+    locked: 0
+  - name: Props
+    uniqueID: 20674483
+    locked: 0
+  - name: Bullets
+    uniqueID: 497485577
+    locked: 0
+  - name: Barcos
+    uniqueID: 3572745517
     locked: 0

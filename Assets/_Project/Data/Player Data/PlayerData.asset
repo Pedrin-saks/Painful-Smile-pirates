@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2245417d31e87dc4a92f3a50d692b3f3, type: 3}
+  m_Name: PlayerData
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  moveSpeed: 2.5
+  rotateSpeed: 2
+  bulletPrefab: {fileID: 5802471615733825313, guid: 631b5ec37d410054298d70efb915a7fe, type: 3}
+  acceleration: 3
+  deacceleration: 3
+  healthSettings:
+  - healthSprite: {fileID: 21300000, guid: b86e71d1d52ffea4788ffe66fccceb05, type: 3}
+    lifePercentage: 100
+  - healthSprite: {fileID: 21300000, guid: 6a78dc51aa087cd4992e5961360e43b3, type: 3}
+    lifePercentage: 66
+  - healthSprite: {fileID: 21300000, guid: c8e5b0b82b52b2044bebc8fcf137d9f6, type: 3}
+    lifePercentage: 33
+  - healthSprite: {fileID: 21300000, guid: 9df2424fb1e649c4eab54cb87f8e8b24, type: 3}
+    lifePercentage: 0
