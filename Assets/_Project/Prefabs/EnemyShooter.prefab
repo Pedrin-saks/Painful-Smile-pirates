@@ -17,9 +17,9 @@ GameObject:
   - component: {fileID: 2705209403853854968}
   - component: {fileID: 7834191783825123944}
   - component: {fileID: 4665121561263582469}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyShooter
-  m_TagString: Untagged
+  m_TagString: EnemyBoat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +108,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0ea48c195237851428f8c777647051c5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7daf19ef46535d04cb2c3a8705fa3efe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 1
@@ -159,9 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <currentHealth>k__BackingField: 0
   <maxHealth>k__BackingField: 0
-  enemyData: {fileID: 0}
-  sr: {fileID: 0}
-  anim: {fileID: 0}
+  healthSettings: []
 --- !u!60 &2705209403853854968
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -231,7 +229,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -247,7 +245,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2689532665055186134}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e7675046f8c298347a035f1f4a9d0b84, type: 2}
   m_CullingMode: 0
@@ -269,7 +267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1503726403945497560}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SpawnPointOneBullet
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}

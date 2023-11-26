@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class EnemyChaser : EnemyBaseController
 {
+    private bool isDidDamage;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
     }
 
-    protected override void Attack()
+    protected override void Attack(Collider2D col)
     {
-        Debug.Log("Explosions");
-        gameObject.SetActive(false);
+        if (col is null) return;
+        if (col.TryGetComponent(out IDamageable damageable) && isDidDamage == false)
+        {
+            isDidDamage = true;
+            damageable.TakeDamage(enemyData.damage);
+            healthSystem.TakeDamage(100);
+        }
     }
 }

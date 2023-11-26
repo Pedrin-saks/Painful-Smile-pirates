@@ -10,6 +10,12 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public Transform PlayerPosition;
 
+    public float gameTime = 180f; // Tempo de jogo em segundos (3 minutos por padrão)
+    public float spawnInterval = 10f; // Intervalo de spawn de inimigos em segundos
+    public Transform[] spawnPoints; // Pontos de spawn aleatórios
+    public GameObject enemyPrefab; // Prefab do inimigo
+    //public Text timerText; // Texto para exibir o tempo no canvas
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -37,5 +43,10 @@ public class GameManager : MonoBehaviour
     public void PlayerRegister(Transform player)
     {
         this.PlayerPosition = player;
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
     }
 }

@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f65a45a61fab8048932ccf4faf2ad74, type: 3}
   m_Name: EnemyChaser
   m_EditorClassIdentifier: 
+  maxHealth: 100
   enemySpeed: 1
   rotationSpeed: 100
+  damage: 25
   radius: 0.55
   layerMask:
     serializedVersion: 2

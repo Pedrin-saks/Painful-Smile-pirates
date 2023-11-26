@@ -3,51 +3,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Shooter), typeof(Rigidbody2D))]
+[RequireComponent(typeof(Shooter), typeof(Rigidbody2D), typeof(HealthSystem))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float rotateSpeed;
+    [SerializeField] private PlayerData playerData;
+
     [SerializeField] private Transform shotSpawnPoint;
     [SerializeField] private Transform tripleShotSpawnPoint;
     [SerializeField] private GameObject bulletPrefab;
 
     private Rigidbody2D rb;
     private Shooter shooter;
-    [SerializeField] private Vector2 movementInput;
-
-    [SerializeField] private float acceleration;
-    [SerializeField] private float deacceleration;
-    [SerializeField] private float currentSpeed;
+    private HealthSystem healthSystem;
+    private Vector2 movementInput;
+    private float currentSpeed;
+    [SerializeField] private bool isDead;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         shooter = GetComponent<Shooter>();
+        healthSystem = GetComponent<HealthSystem>();
+        
     }
 
     private void Start()
     {
+        healthSystem.SetHealth(playerData.maxHealth, playerData.healthSettings);
         GameManager.Instance.PlayerRegister(transform);
         InputManager.Instance.ButtonShootDown += OneShot;
         InputManager.Instance.ButtonTripleShootDown += TripleShot;
+    }
+
+    private void OnEnable()
+    {
+        healthSystem.OnDie += PlayerIsDead;
     }
 
     private void OnDisable()
     {
         InputManager.Instance.ButtonShootDown -= OneShot;
         InputManager.Instance.ButtonTripleShootDown -= TripleShot;
+        healthSystem.OnDie -= PlayerIsDead;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (isDead == true) return;
+
         movementInput = new Vector2(InputManager.Instance.movement.x, InputManager.Instance.movement.y);
         CalculateSpeed(movementInput);
     }
 
     private void FixedUpdate()
     {
+        if (isDead == true) return;
+
         MovePlayer();
         RotationPlayer();
     }
@@ -60,17 +71,17 @@ public class PlayerController : MonoBehaviour
 
     private void RotationPlayer()
     {
-        rb.MoveRotation(transform.rotation * Quaternion.Euler(0, 0, -movementInput.x * rotateSpeed));
+        rb.MoveRotation(transform.rotation * Quaternion.Euler(0, 0, -movementInput.x * playerData.rotateSpeed));
     }
 
     private void CalculateSpeed(Vector2 movementInput)
     {
         if (movementInput.y > 0)
-            currentSpeed += acceleration * Time.deltaTime;
+            currentSpeed += playerData.acceleration * Time.deltaTime;
         else
-            currentSpeed -= deacceleration * Time.deltaTime;
+            currentSpeed -= playerData.deacceleration * Time.deltaTime;
 
-        currentSpeed = Mathf.Clamp(currentSpeed, 0, moveSpeed);
+        currentSpeed = Mathf.Clamp(currentSpeed, 0, playerData.moveSpeed);
     }
 
     private void OneShot()
@@ -83,4 +94,9 @@ public class PlayerController : MonoBehaviour
         shooter.Shoot(3, 45, bulletPrefab, tripleShotSpawnPoint);
     }
 
+    private void PlayerIsDead()
+    {
+        isDead = true;
+        GameManager.Instance.GameOver();
+    }
 }

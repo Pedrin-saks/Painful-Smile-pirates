@@ -24,7 +24,7 @@ public class EnemyShooter : EnemyBaseController
         StopAllCoroutines();
     }
 
-    protected override void Attack()
+    protected override void Attack(Collider2D collider = null)
     {
         if (isCanShot)
         {

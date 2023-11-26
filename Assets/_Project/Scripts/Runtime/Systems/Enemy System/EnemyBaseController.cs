@@ -4,15 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent), typeof(Rigidbody2D))]
+[RequireComponent(typeof(NavMeshAgent), typeof(Rigidbody2D), typeof(HealthSystem))]
 public abstract class EnemyBaseController : MonoBehaviour
 {
     [SerializeField] protected EnemyData enemyData;
     private NavMeshAgent agent;
+    protected HealthSystem healthSystem;
+    private bool isDead;
 
     protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        healthSystem = GetComponent<HealthSystem>();
     }
 
     // Start is called before the first frame update
@@ -20,11 +23,22 @@ public abstract class EnemyBaseController : MonoBehaviour
     {        
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        healthSystem.SetHealth(enemyData.maxHealth, enemyData.healthSettings);
+        healthSystem.OnDie += SetIsDead;
+    }
+
+    private void OnDisable()
+    {
+        healthSystem.OnDie -= SetIsDead;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isDead == true)
+        {
+            agent.speed = 0;
+        }
         agent.SetDestination(GameManager.Instance.PlayerPosition.position);
         UpdateRotation();
         CheckDetectionArea();
@@ -53,11 +67,11 @@ public abstract class EnemyBaseController : MonoBehaviour
         Collider2D collider = Physics2D.OverlapCircle(transform.position, enemyData.radius, enemyData.layerMask);
 
         if (collider is null) return;
-
-        if (collider.gameObject.CompareTag("Player"))
+        if (collider.gameObject.CompareTag("PlayerBoat"))
         {
-            Attack();
-            Debug.Log("PLAYER");
+            Debug.Log($"Nome e tag: {collider.gameObject.name} / {collider.gameObject.tag}");
+            Attack(collider);
+            
         }
     }
 
@@ -70,6 +84,11 @@ public abstract class EnemyBaseController : MonoBehaviour
         }
     }
 
-    protected abstract void Attack();
+    private void SetIsDead()
+    {
+        isDead = true;
+    }
+
+    protected abstract void Attack(Collider2D collider);
 
 }

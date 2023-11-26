@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 8445245781768942145}
   - component: {fileID: 1939835319753848380}
   - component: {fileID: 5612928910931627505}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyChaser
-  m_TagString: Untagged
+  m_TagString: EnemyBoat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,7 +106,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0ea48c195237851428f8c777647051c5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6ba1e1eb07fc579418966d6148f2ec09, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 1
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <currentHealth>k__BackingField: 0
   <maxHealth>k__BackingField: 0
-  enemyData: {fileID: 11400000, guid: 9f2dbe4a2e07ffd48b9deb2cb08f7915, type: 2}
+  healthSettings: []
 --- !u!195 &1939835319753848380
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -230,7 +230,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586692902268244103}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e7675046f8c298347a035f1f4a9d0b84, type: 2}
   m_CullingMode: 0

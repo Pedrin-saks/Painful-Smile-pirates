@@ -12,10 +12,12 @@ GameObject:
   - component: {fileID: 281597366942066129}
   - component: {fileID: 7254137072680011313}
   - component: {fileID: 4208707285210406647}
-  - component: {fileID: 5547709971788622106}
-  m_Layer: 0
+  - component: {fileID: 7643158639042547624}
+  - component: {fileID: 7784540707607239629}
+  - component: {fileID: 7304806189745562973}
+  m_Layer: 6
   m_Name: cannonBall
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,7 +151,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.045
---- !u!114 &5547709971788622106
+--- !u!114 &7643158639042547624
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,9 +160,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 5802471615733825313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4df66d63fc5161249a7d0792e8536134, type: 3}
+  m_Script: {fileID: 11500000, guid: a6e58a444723a9e4a9b6f94fe3c9f21c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  damage: 2
-  maxDistance: 10
+  <currentHealth>k__BackingField: 0
+  <maxHealth>k__BackingField: 0
+--- !u!114 &7784540707607239629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5802471615733825313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aab428bb6c1d88478d2562b0e42ed61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletData: {fileID: 11400000, guid: ab276889f8242094f915af140cc8b6fc, type: 2}
+--- !u!95 &7304806189745562973
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5802471615733825313}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e7675046f8c298347a035f1f4a9d0b84, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

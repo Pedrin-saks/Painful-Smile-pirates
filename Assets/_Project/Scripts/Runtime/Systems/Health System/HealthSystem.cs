@@ -4,16 +4,18 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator), typeof(SpriteRenderer))]
 public class HealthSystem : MonoBehaviour, IDamageable
 {
     [field: SerializeField] public float currentHealth { get; set; }
     [field: SerializeField] public float maxHealth { get; set; }
 
-    [SerializeField] private EnemyData enemyData;
+    public event Action<float, float> OnChangeHealth;
+    public event Action OnDie;
+
     private SpriteRenderer sr;
     private Animator anim;
-
-    public event Action<float, float> OnChangeHealth;
+    [SerializeField] private List<HealthSettings> healthSettings = new();
 
     private void Awake()
     {
@@ -21,27 +23,43 @@ public class HealthSystem : MonoBehaviour, IDamageable
         anim = GetComponent<Animator>();
     }
 
+    public void SetHealth(float health, List<HealthSettings> healthSettings = null)
+    {
+        currentHealth = maxHealth = health;
+
+        if (healthSettings is null) return;
+
+        foreach (var healthSet in healthSettings)
+        {
+            this.healthSettings.Add(healthSet);
+        }
+    }
+
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
 
-        if (currentHealth < 0)
+        if (healthSettings is not null)
+        {
+            foreach (var healthSetting in healthSettings)
+            {
+                if (currentHealth <= healthSetting.lifePercentage)
+                {
+                    sr.sprite = healthSetting.healthSprite;
+                }
+            }
+        }
+
+        if (currentHealth <= 0)
         {
             Die();
         }
-
-        Parallel.ForEach(enemyData.healthSettings, healthSetting => 
-        {
-            if (currentHealth <= healthSetting.lifePercentage)
-            {
-                sr.sprite = healthSetting.healthSprite;
-            }       
-        });
-
     }
 
     public void Die()
     {
+        OnDie?.Invoke();
+        anim.enabled = true;
         anim.SetTrigger("Explosions");
     }
 

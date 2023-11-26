@@ -4,8 +4,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="New Enemy", menuName ="Scriptable/Enemy", order = 0)]
 public class EnemyData : ScriptableObject
 {
+    public float maxHealth;
     public float enemySpeed;
     public float rotationSpeed;
+    public float damage;
     [Range(0.2F, 15)]
     public float radius;
     public LayerMask layerMask;
