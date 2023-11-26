@@ -15,6 +15,7 @@ public class HealthSystem : MonoBehaviour, IDamageable
 
     private SpriteRenderer sr;
     private Animator anim;
+    private bool isScore;
     [SerializeField] private List<HealthSettings> healthSettings = new();
 
     private void Awake()
@@ -62,8 +63,11 @@ public class HealthSystem : MonoBehaviour, IDamageable
     {
         OnDie?.Invoke();
         anim.enabled = true;
-        if (CompareTag("EnemyBoat")) 
+        if (CompareTag("EnemyBoat") && isScore == false)
+        {
+            isScore = true;
             EventsManager.OnEnemyDieTrigger();
+        }
 
         anim.SetTrigger("Explosions");
     }

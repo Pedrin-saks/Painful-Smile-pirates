@@ -31,5 +31,5 @@ MonoBehaviour:
     lifePercentage: 0
   numberOfShots: 1
   spreadAngle: 0
-  delayBetweenShot: 2
+  delayBetweenShot: 1.5
   bulletPrefab: {fileID: 5802471615733825313, guid: 6f0296d4dbae80841a9312e11f5a2d46, type: 3}

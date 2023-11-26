@@ -44,8 +44,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = gameTime;
-        InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
+        timer = PlayerPrefs.GetFloat("GameSessionTime", gameTime);
+        InvokeRepeating("SpawnEnemy", 0f, PlayerPrefs.GetFloat("EnemySpawnTime", spawnInterval));
     }
 
     private void OnEnable()
@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
     {
         EventsManager.OnFinishGame -= FinishGame;
         EventsManager.OnEnemyDie -= PlayerScoreUpdate;
+        Time.timeScale = 1;
 
     }
 

@@ -76,14 +76,14 @@ public abstract class EnemyBaseController : MonoBehaviour
         }
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    if(enemyData is not null)
-    //    {
-    //        Gizmos.color = Color.red;
-    //        Gizmos.DrawWireSphere(transform.position, enemyData.radius);
-    //    }
-    //}
+    private void OnDrawGizmos()
+    {
+        if (enemyData is not null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, enemyData.radius);
+        }
+    }
 
     private void SetIsDead()
     {

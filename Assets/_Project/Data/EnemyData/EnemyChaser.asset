@@ -16,7 +16,7 @@ MonoBehaviour:
   enemySpeed: 1
   rotationSpeed: 100
   damage: 25
-  radius: 0.55
+  radius: 0.85
   layerMask:
     serializedVersion: 2
     m_Bits: 64

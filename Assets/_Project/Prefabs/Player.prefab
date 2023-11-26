@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 6916169102340255027}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Player
+  m_TagString: PlayerBoat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,7 +241,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249804159369622043}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e7675046f8c298347a035f1f4a9d0b84, type: 2}
   m_CullingMode: 0
