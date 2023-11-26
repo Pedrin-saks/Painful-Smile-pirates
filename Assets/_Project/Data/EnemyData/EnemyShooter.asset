@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyShooter
   m_EditorClassIdentifier: 
   maxHealth: 100
-  enemySpeed: 1.2
+  enemySpeed: 1.5
   rotationSpeed: 100
   damage: 0
   radius: 10

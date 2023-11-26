@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   maxHealth: 100
-  moveSpeed: 2
-  rotateSpeed: 1.5
+  moveSpeed: 2.5
+  rotateSpeed: 2
   bulletPrefab: {fileID: 5802471615733825313, guid: 631b5ec37d410054298d70efb915a7fe, type: 3}
   acceleration: 3
   deacceleration: 3
