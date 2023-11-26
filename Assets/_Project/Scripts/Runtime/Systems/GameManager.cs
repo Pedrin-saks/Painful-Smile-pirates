@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,11 +11,22 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public Transform PlayerPosition;
 
-    public float gameTime = 180f; // Tempo de jogo em segundos (3 minutos por padrão)
-    public float spawnInterval = 10f; // Intervalo de spawn de inimigos em segundos
-    public Transform[] spawnPoints; // Pontos de spawn aleatórios
-    public GameObject enemyPrefab; // Prefab do inimigo
-    //public Text timerText; // Texto para exibir o tempo no canvas
+    [Header("Settings")]
+    [Range(60,180)]
+    [SerializeField] private float gameTime;
+    [Range(1, 10)]
+    [SerializeField] private float spawnInterval;
+    [SerializeField] private List<Transform> spawnPoints;
+    [SerializeField] private List<GameObject> enemyPrefab;
+
+    [Header("UI")]
+    [SerializeField] private GameObject painelFinishGame;
+    [SerializeField] private TMP_Text timerText;
+    [SerializeField] private TMP_Text scoreText;
+
+    private float timer;
+    private bool gameIsRunning = true;
+    private int scorePlayer;
 
     private void Awake()
     {
@@ -31,13 +43,39 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        timer = gameTime;
+        InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
+    }
+
+    private void OnEnable()
+    {
+        EventsManager.OnFinishGame += FinishGame;
+        EventsManager.OnEnemyDie += PlayerScoreUpdate;
+    }
+
+    private void OnDisable()
+    {
+        EventsManager.OnFinishGame -= FinishGame;
+        EventsManager.OnEnemyDie -= PlayerScoreUpdate;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameIsRunning)
+        {
+            timer -= Time.deltaTime;
+
+            if (timer <= 0f)
+            {
+                gameIsRunning = false;
+                timer = 0f;
+                EventsManager.OnFinishGameTrigger();
+            }
+
+            UpdateTimerUI();
+        }
     }
 
     public void PlayerRegister(Transform player)
@@ -45,8 +83,34 @@ public class GameManager : MonoBehaviour
         this.PlayerPosition = player;
     }
 
-    public void GameOver()
+    public void FinishGame()
     {
         Time.timeScale = 0;
+        scoreText.text = "Score Earned: " + scorePlayer.ToString();
+        painelFinishGame.SetActive(true);
+
     }
+
+    public void PlayerScoreUpdate()
+    {
+        scorePlayer++;
+    }
+
+    private void SpawnEnemy()
+    {
+        if (gameIsRunning)
+        {
+            Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
+            GameObject randomEnemy = enemyPrefab[Random.Range(0, enemyPrefab.Count)];
+            Instantiate(randomEnemy, randomSpawnPoint.position, randomSpawnPoint.rotation);
+        }
+    }
+
+    private void UpdateTimerUI()
+    {
+        timerText.text = $"Tempo: {TimeFormatter.FormatTime(timer)}";
+    }
+
+
+
 }

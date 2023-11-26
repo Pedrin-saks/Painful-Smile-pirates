@@ -97,6 +97,6 @@ public class PlayerController : MonoBehaviour
     private void PlayerIsDead()
     {
         isDead = true;
-        GameManager.Instance.GameOver();
+        EventsManager.OnFinishGameTrigger();
     }
 }

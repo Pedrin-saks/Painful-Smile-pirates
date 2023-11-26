@@ -60,6 +60,9 @@ public class HealthSystem : MonoBehaviour, IDamageable
     {
         OnDie?.Invoke();
         anim.enabled = true;
+        if (CompareTag("EnemyBoat")) 
+            EventsManager.OnEnemyDieTrigger();
+
         anim.SetTrigger("Explosions");
     }
 

@@ -23,6 +23,7 @@ public abstract class EnemyBaseController : MonoBehaviour
     {        
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        agent.speed = enemyData.enemySpeed;
         healthSystem.SetHealth(enemyData.maxHealth, enemyData.healthSettings);
         healthSystem.OnDie += SetIsDead;
     }
@@ -75,14 +76,14 @@ public abstract class EnemyBaseController : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        if(enemyData is not null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, enemyData.radius);
-        }
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    if(enemyData is not null)
+    //    {
+    //        Gizmos.color = Color.red;
+    //        Gizmos.DrawWireSphere(transform.position, enemyData.radius);
+    //    }
+    //}
 
     private void SetIsDead()
     {

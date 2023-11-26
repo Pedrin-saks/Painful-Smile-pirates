@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyChaser
   m_EditorClassIdentifier: 
   maxHealth: 100
-  enemySpeed: 1
+  enemySpeed: 0.8
   rotationSpeed: 100
   damage: 25
   radius: 0.55
